@@ -1,11 +1,13 @@
 #import <UIKit/UIKit.h>
 #import "GPUImageContext.h"
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, GPUImageFillModeType) {
     kGPUImageFillModeStretch,                       // Stretch to fill the full view, which may distort the image outside of its normal aspect ratio
     kGPUImageFillModePreserveAspectRatio,           // Maintains the aspect ratio of the source image, adding bars of the specified background color
     kGPUImageFillModePreserveAspectRatioAndFill     // Maintains the aspect ratio of the source image, zooming in on its center to fill the view
-} GPUImageFillModeType; 
+};
+
+
 
 /**
  UIView subclass to use as an endpoint for displaying GPUImage outputs
@@ -13,7 +15,6 @@ typedef enum {
 @interface GPUImageView : UIView <GPUImageInput>
 {
     GPUImageRotationMode inputRotation;
-    __unsafe_unretained id<GPUImageTextureDelegate> textureDelegate;
 }
 
 /** The fill mode dictates how images are fit in the view, with the default being kGPUImageFillModePreserveAspectRatio
